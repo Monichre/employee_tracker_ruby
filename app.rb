@@ -9,7 +9,7 @@ require('./lib/project')
 
 get('/') do
   @divisions = Division.all()
-  @projects = Project.all()
+  @projects = Project.not_completed()
   erb(:index)
 end
 
@@ -87,4 +87,12 @@ post('/projects/:id/add_employee') do
   @employee.update({:project_id => @project.id().to_i})
   @employees = Employee.all()
   erb(:project)
+end
+
+patch('/projects/:id/completed') do
+  @project = Project.find(params.fetch('id').to_i)
+  @project.update({:completed => true})
+  @divisions = Division.all()
+  @projects = Project.not_completed()
+  erb(:index)
 end
