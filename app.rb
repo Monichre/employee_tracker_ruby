@@ -43,3 +43,10 @@ patch('/employees/:id/edit') do
   @employee.update({:first_name => first_name, :last_name => last_name})
   erb(:employee)
 end
+
+delete('/employees/:id/delete') do
+  @employee = Employee.find(params.fetch('id').to_i)
+  @employee.delete()
+  @division = @employee.division
+  erb(:employee_delete_success)
+end

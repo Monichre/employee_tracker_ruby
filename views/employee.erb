@@ -16,6 +16,11 @@
   <button type="submit">Update Employee</button>
 </form>
 
+<form action="/employees/<%= @employee.id %>/delete" method="post">
+  <input name="_method" type="hidden" value="delete">
+  <button type="submit">Remove Employee</button>
+</form>
+
 
 
 
