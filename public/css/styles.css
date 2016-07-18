@@ -1,3 +1,8 @@
+@font-face {
+    font-family: ghost;
+    src: url(../ghost.ttf);
+}
+
 body {
   margin: auto;
   display: block;
@@ -8,27 +13,52 @@ header {
   height: 300px;
   clear: both;
   margin-top: 0;
+  position: relative;
 }
-/*.container {
-  background-color: #EAE8D0;
-}*/
-header img {
+.header-background h1 {
+  display: inline-block;;
+  margin-top: 30px;
+  padding-top: 100px;
+  font-family: ghost;
+  font-size: 50px;
+  color: white;
+}
+.header-background h1 span {
+  color: red;
+}
+.header-background img {
   height: 200px;
   width: 200px;
   position: absolute;
-  top: 60px;
-  right: 60px;
+  right: 0;
+  bottom: 0;
+
 }
 .header-background {
   height: inherit;
   width: 70%;
   background-color: #25A6B4;
+  clear: both;
+  position: relative;
+  float: left;
 }
-.header-background h1 {
-  margin: 0;
-  font-family: helvetica;
-  color: white;
+
+header ul {
+  float: left;
+  width: 30%;
+  list-style-type: none;
+  padding: 0;
+  position: absolute;
+  bottom: 0;
+  right: 0;
 }
+header ul li {
+  display: inline;
+  margin: 20px;
+  font-family: ghost;
+  font-size: 25px;
+}
+
 ul {
   list-style-type: none;
 }

@@ -13,6 +13,26 @@ get('/') do
   erb(:index)
 end
 
+get('/admin') do
+
+  erb(:admin)
+end
+
+get('/sign_in') do
+  erb(:sign_in)
+end
+
+post('/sign_in/employee') do
+  first_name = params.fetch('employee_first_name')
+  last_name = params.fetch('employee_last_name')
+  # full_name = '#{first_name} #{last_name}'
+  @employee = Employee.searchEmployees(first_name, last_name)
+  @projects = Project.all()
+  erb(:employee)
+  # redirect('/employees/:id')
+
+end
+
 post('/divisions') do
   name = params.fetch('division_name')
   new_division = Division.new({:name => name})
@@ -27,6 +47,7 @@ end
 
 get('/employees/:id') do
   @employee = Employee.find(params.fetch('id').to_i)
+  @projects = Project.all
   erb(:employee)
 end
 
@@ -67,6 +88,14 @@ delete('/employees/:id/delete') do
   erb(:employee_delete_success)
 end
 
+patch('/employees/:id/add_project') do
+  @employee = Employee.find(params.fetch('id').to_i)
+  project_id = params.fetch('employee_project').to_i
+  @employee.update({:project_id => project_id})
+  @projects = Project.all()
+  erb(:employee)
+end
+
 post('/projects') do
   project_name = params.fetch('project_name')
   due_date = params.fetch('due_date')
@@ -90,9 +119,9 @@ post('/projects/:id/add_employee') do
 end
 
 patch('/projects/:id/completed') do
-  @project = Project.find(params.fetch('id').to_i)
-  @project.update({:completed => true})
-  @divisions = Division.all()
-  @projects = Project.not_completed()
-  erb(:index)
+  project = Project.find(params.fetch('id').to_i)
+  project.update({:completed => true})
+  # @divisions = Division.all()
+  # @projects = Project.not_completed()
+  redirect('/')
 end
