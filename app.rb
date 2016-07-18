@@ -73,3 +73,18 @@ post('/projects') do
   @project = Project.create({:name => project_name, :due_date => due_date, :completed => false})
   erb(:project_success)
 end
+
+get('/projects/:id') do
+  @project = Project.find(params.fetch('id').to_i)
+  @employees = Employee.all()
+  erb(:project)
+end
+
+post('/projects/:id/add_employee') do
+  @project = Project.find(params.fetch('id').to_i)
+  employee_id = params.fetch('project_employee')
+  @employee = Employee.find(employee_id)
+  @employee.update({:project_id => @project.id().to_i})
+  @employees = Employee.all()
+  erb(:project)
+end
