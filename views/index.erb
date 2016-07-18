@@ -1,0 +1,13 @@
+<h1>Welcome to Ruby Staffing</h1>
+<h2>Below search our employee database by division</h2>
+
+<% @divisions.each() do |division| %>
+  <p><%= division.name() %></p>
+<% end %>
+
+<form action="/divisions" method="post">
+  <label for="division_name">Division Title</label>
+  <input id="division_name" name="division_name" type="text">
+
+  <button type="submit">Add this division</button>
+</form>
