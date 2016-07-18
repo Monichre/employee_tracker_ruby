@@ -17,3 +17,8 @@ post('/divisions') do
   new_division.save()
   erb(:success)
 end
+
+get('/divisions/:id') do
+  @division = Division.find(params.fetch('id').to_i())
+  erb(:division)
+end

@@ -6,11 +6,17 @@ require('sinatra/activerecord')
 require('employee')
 require('division')
 
-Rspec.configure do |config|
+RSpec.configure do |config|
   config.after(:each) do
     Employee.all().each() do |employee|
       employee.destroy()
     end
+  end
+end
+
+
+RSpec.configure do |config|
+  config.after(:each) do
     Division.all().each() do |division|
       division.destroy()
     end

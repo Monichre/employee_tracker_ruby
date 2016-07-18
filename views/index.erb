@@ -2,7 +2,7 @@
 <h2>Below search our employee database by division</h2>
 
 <% @divisions.each() do |division| %>
-  <p><%= division.name() %></p>
+  <p><a href="/divisions/<%= division.id() %>"><%= division.name() %></a></p>
 <% end %>
 
 <form action="/divisions" method="post">
