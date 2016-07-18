@@ -1,3 +1,23 @@
 <h2>Employees of <%= @division.name() %> Division<h2>
 
-<% 
+<ul>
+  <% @division.employees.each do |employee| %>
+  <li> <a href="/employees/<%= employee.id() %>"><%= employee.first_name %>, <%= employee.last_name %></li></a>
+  <% end %>
+
+</ul>
+
+<h3>Add a new employee</h3>
+<form action="/divisions/<%= @division.id() %>/new_employee" method="post">
+  <label for="new_employee_first_name">First Name</label><br>
+  <input id="new_employee_first_name" name="new_employee_first_name" type="text"><br>
+
+  <label for="new_employee_last_name">Last Name</label><br>
+  <input id="new_employee_last_name" name="new_employee_last_name" type="text"><br>
+
+  <button type="submit">Add this employee</button>
+</form>
+
+
+<a href="/">Home</a>
+<a href="/divisions">Divisions</a>

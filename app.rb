@@ -2,7 +2,7 @@ require('sinatra')
 require("sinatra/activerecord")
 require('sinatra/reloader')
 also_reload('lib/**/*.rb')
-require('./lib/division')
+require('./lib/employee')
 require('./lib/employee')
 
 
@@ -21,4 +21,25 @@ end
 get('/divisions/:id') do
   @division = Division.find(params.fetch('id').to_i())
   erb(:division)
+end
+
+get('/employees/:id') do
+  @employee = Employee.find(params.fetch('id').to_i)
+  erb(:employee)
+end
+
+post('/divisions/:id/new_employee') do
+  first_name = params.fetch('new_employee_first_name')
+  last_name = params.fetch('new_employee_last_name')
+  @division = Division.find(params.fetch('id').to_i)
+  new_employee = Employee.create({:first_name => first_name, :last_name => last_name, :division_id => @division.id(), :project_id => nil})
+  erb(:new_employee_success)
+end
+
+patch('/employees/:id/edit') do
+  @employee = Employee.find(params.fetch('id').to_i)
+  first_name = params.fetch("employee_first_name") == ''? @employee.first_name : params.fetch("employee_first_name")
+  last_name = params.fetch("employee_last_name") == ''? @employee.last_name : params.fetch("employee_last_name")
+  @employee.update({:first_name => first_name, :last_name => last_name})
+  erb(:employee)
 end

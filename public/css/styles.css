@@ -3,3 +3,9 @@ body {
   display: block;
   text-align: center;
 }
+ul {
+  list-style-type: none;
+}
+button {
+  margin: 10px;
+}
