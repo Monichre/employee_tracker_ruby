@@ -1,17 +1,42 @@
-<h1>Welcome to Ruby Staffing</h1>
-<h2>Below search our employee database by division</h2>
-<% if @divisions.any? %>
-  <% @divisions.each() do |division| %>
-    <p><a href="/divisions/<%= division.id() %>"><%= division.name() %></a></p>
-  <% end %>
-<% else %>
-  <p>
-    No divisions at this time
-  </p>
-<% end %>
-<form action="/divisions" method="post">
-  <label for="division_name">Division Title</label><br>
-  <input id="division_name" name="division_name" type="text"><br>
 
-  <button type="submit">Add this division</button>
-</form>
+<div id="divisions">
+  <h1>Divisions</h1>
+  <% if @divisions.any? %>
+    <% @divisions.each() do |division| %>
+      <p><a href="/divisions/<%= division.id() %>"><%= division.name() %></a></p>
+    <% end %>
+  <% else %>
+    <p>
+      No divisions at this time
+    </p>
+  <% end %>
+  <form action="/divisions" method="post">
+    <label for="division_name">Division Title</label><br>
+    <input id="division_name" name="division_name" type="text"><br>
+
+    <button type="submit">Add this division</button>
+  </form>
+
+</div>
+<div id="projects">
+  <h1>Projects</h1>
+  <% if @projects.any? %>
+    <% @projects.each() do |project| %>
+      <p><a href="/projects/<%= project.id() %>"><%= project.name() %></a></p>
+    <% end %>
+  <% else %>
+    <p>
+      No projects at this time
+    </p>
+  <% end %>
+
+  <form action="/projects" method="post">
+    <label for="project_name">Project Title</label><br>
+    <input id="project_name" name="project_name" type="text"><br>
+    <label for="due_date">Due Date</label><br>
+    <input id="due_date" name="due_date" type="text"><br>
+
+    <button type="submit">Add this Project</button>
+  </form>
+
+</div>

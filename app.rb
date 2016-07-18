@@ -3,11 +3,13 @@ require("sinatra/activerecord")
 require('sinatra/reloader')
 also_reload('lib/**/*.rb')
 require('./lib/employee')
-require('./lib/employee')
+require('./lib/division')
+require('./lib/project')
 
 
 get('/') do
   @divisions = Division.all()
+  @projects = Project.all()
   erb(:index)
 end
 
@@ -63,4 +65,11 @@ delete('/employees/:id/delete') do
   @employee.delete()
   @division = @employee.division
   erb(:employee_delete_success)
+end
+
+post('/projects') do
+  project_name = params.fetch('project_name')
+  due_date = params.fetch('due_date')
+  @project = Project.create({:name => project_name, :due_date => due_date, :completed => false})
+  erb(:project_success)
 end
