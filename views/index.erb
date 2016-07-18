@@ -1,10 +1,14 @@
 <h1>Welcome to Ruby Staffing</h1>
 <h2>Below search our employee database by division</h2>
-
-<% @divisions.each() do |division| %>
-  <p><a href="/divisions/<%= division.id() %>"><%= division.name() %></a></p>
+<% if @divisions.any? %>
+  <% @divisions.each() do |division| %>
+    <p><a href="/divisions/<%= division.id() %>"><%= division.name() %></a></p>
+  <% end %>
+<% else %>
+  <p>
+    No divisions at this time
+  </p>
 <% end %>
-
 <form action="/divisions" method="post">
   <label for="division_name">Division Title</label><br>
   <input id="division_name" name="division_name" type="text"><br>

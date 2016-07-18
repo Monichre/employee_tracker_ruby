@@ -9,3 +9,13 @@ ul {
 button {
   margin: 10px;
 }
+
+#division_content {
+  clear: both;
+  width: 100%;
+}
+
+#division_update, #division_add_employee {
+  float: left;
+  width: 50%;
+}

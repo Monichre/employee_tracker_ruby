@@ -1,23 +1,44 @@
-<h2>Employees of <%= @division.name() %> Division<h2>
 
-<ul>
-  <% @division.employees.each do |employee| %>
-  <li> <a href="/employees/<%= employee.id() %>"><%= employee.first_name %>, <%= employee.last_name %></li></a>
-  <% end %>
+<div id="division_content">
+  <h2>Employees of <%= @division.name() %> Division<h2>
 
-</ul>
+  <ul>
+    <% @division.employees.each do |employee| %>
+    <li> <a href="/employees/<%= employee.id() %>"><%= employee.first_name %>, <%= employee.last_name %></li></a>
+    <% end %>
 
-<h3>Add a new employee</h3>
-<form action="/divisions/<%= @division.id() %>/new_employee" method="post">
-  <label for="new_employee_first_name">First Name</label><br>
-  <input id="new_employee_first_name" name="new_employee_first_name" type="text"><br>
+  </ul>
+</div>
 
-  <label for="new_employee_last_name">Last Name</label><br>
-  <input id="new_employee_last_name" name="new_employee_last_name" type="text"><br>
 
-  <button type="submit">Add this employee</button>
+<div id="division_update">
+  <h3>Update this division</h3>
+  <form action="/divisions/<%= @division.id() %>/edit" method="post">
+    <input name="_method" type="hidden" value="patch">
+    <label for="division_name">First Name</label><br>
+    <input id="division_name" name="division_name" type="text"><br>
+
+    <button type="submit">Update this division</button>
+  </form>
+
+</div>
+<div id="division_add_employee">
+  <h3>Add a new employee</h3>
+  <form action="/divisions/<%= @division.id() %>/new_employee" method="post">
+    <label for="new_employee_first_name">First Name</label><br>
+    <input id="new_employee_first_name" name="new_employee_first_name" type="text"><br>
+
+    <label for="new_employee_last_name">Last Name</label><br>
+    <input id="new_employee_last_name" name="new_employee_last_name" type="text"><br>
+
+    <button type="submit">Add this employee</button>
+  </form>
+</div>
+
+<form action="/divisions/<%= @division.id() %>/delete" method="post">
+  <input name="_method" type="hidden" value="delete">
+  <button type="submit">Delete this division</button>
 </form>
-
 
 <a href="/">Home</a>
 <a href="/divisions">Divisions</a>

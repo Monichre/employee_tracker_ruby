@@ -36,6 +36,20 @@ post('/divisions/:id/new_employee') do
   erb(:new_employee_success)
 end
 
+patch('/divisions/:id/edit') do
+  division_name = params.fetch('division_name')
+  @division = Division.find(params.fetch('id').to_i)
+  @division.update({:name => division_name})
+  erb(:division)
+end
+
+delete('/divisions/:id/delete') do
+  division = Division.find(params.fetch('id').to_i)
+  division.delete()
+  @divisions = Division.all()
+  erb(:index)
+end
+
 patch('/employees/:id/edit') do
   @employee = Employee.find(params.fetch('id').to_i)
   first_name = params.fetch("employee_first_name") == ''? @employee.first_name : params.fetch("employee_first_name")
